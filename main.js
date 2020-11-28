@@ -109,7 +109,29 @@ class Ruta{
         }
     }
     crearRecorrido(baseInicio,horaInicio,horaFin){
-
+        div.textContent = "";
+        let inicio = parseInt(horaInicio.split(":",2));
+        let minutos = parseInt(horaInicio.substring(horaInicio.indexOf(":")+1,horaInicio.lenght));
+        let final = parseInt(horaFin.split(":"));
+        aux = this.inicio;
+        while (aux.base != baseInicio){
+            aux = aux.siguiente;
+        }
+        while (inicio != final){
+            if(minutos > 60 || minutos == 60){
+                if (minutos > 60){
+                    minutos = 0;
+                    minutos += parseInt(aux.minutos);
+                }
+                else{
+                    minutos = 0;
+                }
+                inicio++;
+            }
+            graficarRecorrido(aux,minutos,inicio);
+            minutos += parseInt(aux.minutos);
+            aux = aux.siguiente;
+        }
     }
 }
 class Bases{
@@ -147,4 +169,7 @@ btnEliminar.addEventListener("click",()=>{
 })
 btnImprimir.addEventListener("click",()=>{
     ruta.imprimir();
+})
+btnIniciar.addEventListener("click",()=>{
+    ruta.crearRecorrido(baseInicio.value,horaInicio.value,horaFin.value);
 })

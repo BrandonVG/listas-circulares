@@ -39,3 +39,17 @@ function lista(base){
         lista.appendChild(item);
     }
 }
+function graficarRecorrido(base,minutos,hora){
+    if(minutos == 0){
+        div.insertAdjacentHTML("beforeend",`<div class="container">
+        <p>Base: ${base.base}</p>
+        <p>Hora: ${hora}:00</div>
+        <br>`); 
+    }
+    else{
+        div.insertAdjacentHTML("beforeend",`<div class="container">
+        <p>Base: ${base.base}</p>
+        <p>Hora: ${hora}:${minutos}</div>
+        <br>`);
+    }
+}
