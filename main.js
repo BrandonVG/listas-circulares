@@ -58,7 +58,8 @@ class Ruta{
         else if(this.inicio.base == base){
             temp = this.inicio;
             aux = this.inicio;
-            while(aux.siguiente != this.inicio);{
+            let i = 0;
+            while (aux.siguiente != this.inicio){
                 aux = aux.siguiente;
             }
             aux.siguiente = this.inicio.siguiente;
@@ -90,21 +91,25 @@ class Ruta{
             div.insertAdjacentHTML("beforeend","No hay bases");
             return false;
         }
-        aux = this.inicio.siguiente;
-        let i = 1;
-        while (aux != this.inicio){
-            i++;
-        }
+        let i = 0;
         aux = this.inicio;
-        while (i>0){
+        while (i!=2){
+            if (aux == this.inicio){
+                i++;
+                if (i == 2){
+                    break;
+                }
+            }
             let ren = tabla.insertRow(-1);
             let col = ren.insertCell(0);
             let col1 = ren.insertCell(1);
             col.textContent = aux.base;
             col1.textContent = aux.minutos;
             aux = aux.siguiente;
-            i--;
         }
+    }
+    crearRecorrido(baseInicio,horaInicio,horaFin){
+
     }
 }
 class Bases{
@@ -122,15 +127,23 @@ btnAgregar.addEventListener("click",() =>{
     div.insertAdjacentHTML("beforeend","<p>Base agregada.</p>");
 });
 btnBuscar.addEventListener("click",() =>{
+    resultado = ruta.buscarBase(base.value);
+    if (resultado == null){
+        div.textContent="";
+        div.insertAdjacentHTML("beforeend","La base no existe: "+resultado);
+        return false;
+    }
+    lista(resultado)
 });
 btnEliminar.addEventListener("click",()=>{
     let resultado = ruta.eliminarBase(base.value);
     if (resultado == null){
         div.textContent="";
-        div.insertAdjacentHTML("beforeend","El producto no existe: "+resultado);
+        div.insertAdjacentHTML("beforeend","La base no existe: "+resultado);
         return false;
     }
     lista(resultado);
+    div.insertAdjacentHTML("beforeend","<p>Base eliminada.</p>");
 })
 btnImprimir.addEventListener("click",()=>{
     ruta.imprimir();

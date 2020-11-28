@@ -31,7 +31,6 @@ function lista(base){
     let atributos =["base","minutos"];
     let labels = ["Base","Minutos"];
     div.textContent="";
-    div.insertAdjacentHTML("beforeend","<p>Base eliminada.</p>");
     div.insertAdjacentHTML("beforeend","<ul id='lista'></ul>");
     let lista = document.querySelector("#lista");
     for(let i = 0; i<2; i++){
